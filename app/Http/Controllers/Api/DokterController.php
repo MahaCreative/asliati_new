@@ -15,12 +15,12 @@ class DokterController extends Controller
         $hariIni = $now->translatedFormat('l'); // 'Senin', 'Selasa', dst
         $jamSekarang = $now->format('H:i:s');
 
-        $query = Dokter::with('jadwal', 'poli', 'user')
-            ->whereHas('jadwal', function ($q) use ($hariIni, $jamSekarang) {
-                $q->where('hari', $hariIni);
-                // ->where('jam_mulai', '<=', $jamSekarang)
-                // ->where('jam_selesai', '>=', $jamSekarang);
-            });
+        $query = Dokter::with('jadwal', 'poli', 'user');
+            // ->whereHas('jadwal', function ($q) use ($hariIni, $jamSekarang) {
+            //     $q->where('hari', $hariIni);
+            //     // ->where('jam_mulai', '<=', $jamSekarang)
+            //     // ->where('jam_selesai', '>=', $jamSekarang);
+            // });
 
         if ($request->poli_id) {
             $query->where('poli_id', $request->poli_id);
