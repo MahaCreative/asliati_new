@@ -72,7 +72,7 @@ export default function AntrianOnline({ poli, dokter, antrian, keluarga }) {
         }
     }, [dokter]);
 
-    useEffect(() => reload(data), [data.poli_id]);
+    useEffect(() => reload(data), [data]);
     return (
         <div className="relative max-h-screen min-h-screen w-full overflow-y-auto bg-gradient-to-br from-slate-50 to-slate-100">
             {/* Header Controls */}
