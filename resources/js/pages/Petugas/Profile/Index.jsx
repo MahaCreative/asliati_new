@@ -28,7 +28,7 @@ export default function Index({ profile }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('profile-klinik.update'), {
+        post(route('petugas.profile-klinik.update'), {
             forceFormData: true,
             onSuccess: () => {
                 setData('logo', null);

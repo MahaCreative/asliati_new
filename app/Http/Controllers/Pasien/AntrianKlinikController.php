@@ -37,15 +37,15 @@ class AntrianKlinikController extends Controller
             $dokterQuery->where('poli_id', $request->poli_id);
         }
 
-        if ($request->tanggal_kunjungan) {
-            $hari = Carbon::parse($request->tanggal_kunjungan)->translatedFormat('l'); // contoh: 'Senin'
+        // if ($request->tanggal_kunjungan) {
+        //     $hari = Carbon::parse($request->tanggal_kunjungan)->translatedFormat('l'); // contoh: 'Senin'
 
 
-            // Filter dokter yang jadwalnya cocok dengan hari & jam kunjungan
-            $dokterQuery->whereHas('jadwal', function ($q) use ($hari) {
-                $q->where('hari', $hari);
-            });
-        }
+        //     // Filter dokter yang jadwalnya cocok dengan hari & jam kunjungan
+        //     $dokterQuery->whereHas('jadwal', function ($q) use ($hari) {
+        //         $q->where('hari', $hari);
+        //     });
+        // }
 
         $dokter = $dokterQuery->latest()->get();
 
