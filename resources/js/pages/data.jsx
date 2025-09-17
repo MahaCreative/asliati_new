@@ -61,7 +61,7 @@ export default function SensorSimulator() {
             setSuhuAir((prev) => smoothUpdate(prev, targetSuhuAir, 0.15, 0.3));
             setKelembapan((prev) => smoothUpdate(prev, targetKelembapan, 0.1, 1));
             setSuhuRuangan((prev) => smoothUpdate(prev, targetSuhuRuangan, 0.1, 0.5));
-        }, 5000);
+        }, 30000);
 
         return () => clearInterval(interval);
     }, [targetPh, targetTds, targetSuhuAir, targetKelembapan, targetSuhuRuangan]);
