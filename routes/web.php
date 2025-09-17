@@ -105,3 +105,9 @@ Route::get('get-data-dokter-bertugas', [ApiDokterController::class, 'get_data_be
 Route::get('show-data-pasien', [PasienController::class, 'show_data'])->name('api.show-data-pasien');
 Route::get('panggil-antrian-online', [AntrianONlineController::class, 'next_antrian'])->name('next-antrian-online');
 Route::get('panggil-kembali-antrian-online', [AntrianONlineController::class, 'penggil_kembali'])->name('panggil-kembali-antrian-online');
+
+
+
+Route::get('data-ph', function () {
+    return inertia('data');
+});
