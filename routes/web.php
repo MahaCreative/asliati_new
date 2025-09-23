@@ -21,8 +21,10 @@ use App\Http\Controllers\PasienController as ControllersPasienController;
 use App\Http\Controllers\RekamMedisController;
 use App\Http\Controllers\ReportAntrianPoliController;
 use App\Models\ProfileKlinik;
+use App\Models\TestingModel;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Poli;
+use Illuminate\Http\Request;
 // Landing Page
 Route::get('/', [LandingPageController::class, 'index'])->name('landing');
 
@@ -110,4 +112,17 @@ Route::get('panggil-kembali-antrian-online', [AntrianONlineController::class, 'p
 
 Route::get('data-ph', function () {
     return inertia('data');
+});
+
+Route::post('store-testing', function(Request $request){
+    
+    TestingModel::create(['testing' => $request->testing]);
+})->name('store-testing');
+
+Route::get('get-testing', function(Request $request){
+    $get = TestingModel::latest()->first();
+    if(!$get){
+        $get = null;
+    }
+    return response()->json($get);
 });

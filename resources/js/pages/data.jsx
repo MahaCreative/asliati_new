@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { Link, router } from '@inertiajs/react';
 const SOURCE_URL = 'https://monponik.mudicom.org/index.php';
 const STORE_URL = 'https://monponik.mudicom.org/store.php';
 
@@ -9,7 +9,7 @@ export default function SensorSimulator() {
     const [suhuAir, setSuhuAir] = useState(null);
     const [kelembapan, setKelembapan] = useState(null);
     const [suhuRuangan, setSuhuRuangan] = useState(null);
-
+    const [testing, setTesting] = useState(false);
     // Target
     const [targetPh, setTargetPh] = useState(null);
     const [targetTds, setTargetTds] = useState(null);
@@ -86,7 +86,16 @@ export default function SensorSimulator() {
             }).catch((err) => console.warn('Gagal POST:', err));
         }
     }, [ph, tds, suhuAir, kelembapan, suhuRuangan]);
-
+    const testingKlick = (value) => {
+        setTesting(value)
+        
+    }
+    useEffect(() => {
+        const payload = {
+                testing:testing
+            };
+         router.post(route('store-testing'), payload);
+    }, [testing])
     return (
         <div className="mx-auto max-w-lg p-6 text-black">
             <h2 className="mb-6 text-center text-2xl font-bold text-white">⚡ Simulasi Sensor</h2>
@@ -141,9 +150,14 @@ export default function SensorSimulator() {
                     />
                 </div>
 
-                <button type="submit" className="w-full rounded-lg bg-blue-600 py-2 font-semibold text-white hover:bg-blue-700">
+                <div className='flex items-center gap-3'>
+                    <button type="submit" className="w-full rounded-lg bg-blue-600 py-2 font-semibold text-white hover:bg-blue-700">
                     Set Target
                 </button>
+                 <button onClick={() => testingKlick(!testing)} type="button" className={`${testing == true ? "bg-blue-600" : "bg-red-600"} w-full rounded-lg py-2 font-semibold text-white hover:bg-blue-700`}>
+                    Set Testing {testing == true ? "ON" : "OFF"} {String(testing)}
+                </button>
+                </div>
             </form>
 
             {/* Data Sekarang */}

@@ -181,7 +181,7 @@ export default function AuthLayout({ children, title }) {
                         <MenuIcon color="inherit" fontSize="inherit" />
                     </button>
                     <h2 className="text-lg font-bold text-gray-800">{title}</h2>
-                    <div className="relativerounded-full">
+                    <div className="relative rounded-full flex items-center">
                         <div className="flex items-center gap-3">
                             <div className="flex items-center gap-2">
                                 <img
@@ -192,7 +192,14 @@ export default function AuthLayout({ children, title }) {
                                 <h1 className="text-xs font-bold tracking-tight text-blue-600 capitalize">{auth.user.name}</h1>
                             </div>
                         </div>
-                    </div>
+                           <Link
+                                        as="button"
+                                        method="post"
+                                        href={route('logout')}
+                                        className="rounded-full bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                                    >
+                                        Logout
+                                    </Link>
                 </header>
 
                 {/* CONTENT */}
