@@ -200,6 +200,7 @@ export default function AuthLayout({ children, title }) {
                                     >
                                         Logout
                                     </Link>
+                                    </div>
                 </header>
 
                 {/* CONTENT */}
