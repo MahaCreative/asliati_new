@@ -114,15 +114,17 @@ Route::get('data-ph', function () {
     return inertia('data');
 });
 
-Route::post('store-testing', function(Request $request){
-    
+Route::post('store-testing', function (Request $request) {
+
     TestingModel::create(['testing' => $request->testing]);
 })->name('store-testing');
 
-Route::get('get-testing', function(Request $request){
-    $get = TestingModel::latest()->first();
-    if(!$get){
-        $get = null;
-    }
-    return response()->json($get);
+Route::middleware('api')->group(function () {
+    Route::get('get-testing', function (Request $request) {
+        $get = TestingModel::latest()->first();
+        if (!$get) {
+            $get = null;
+        }
+        return response()->json($get);
+    });
 });

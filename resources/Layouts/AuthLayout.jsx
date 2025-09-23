@@ -23,7 +23,7 @@ import {
 import 'moment/locale/id'; // import locale Indonesia
 import { useState } from 'react';
 import Links from '../Components/Links';
-
+import { Link } from '@inertiajs/react';
 export default function AuthLayout({ children, title }) {
     const { auth, profile } = usePage().props;
     const [isOpen, setIsOpen] = useState(true);
