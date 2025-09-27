@@ -369,7 +369,7 @@ export default function LandingPage({ polis, dokter, profile, pasien, petugas })
                                 alt={item.user.name}
                                 className="mb-4 h-28 w-28 rounded-full border-4 border-blue-100 object-cover shadow-md"
                             />
-                            <h3 className="text-xl font-bold text-gray-800 ">{item.user.name}</h3>
+                            <h3 className="text-xl font-bold text-gray-800">{item.user.name}</h3>
                             <p className="mt-1 font-medium text-blue-600">{item.poli?.nama}</p>
                             <p className="mt-3 line-clamp-5 text-left text-xs leading-relaxed text-gray-600">{item.deskripsi}</p>
                         </div>
