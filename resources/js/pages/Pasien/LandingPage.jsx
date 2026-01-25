@@ -424,7 +424,7 @@ export default function LandingPage({ polis, dokter, profile, pasien, petugas })
                         {polis.map((item) =>
                             poliAktif === item.id ? (
                                 <div key={item.id}>
-                                    <h2 className="mb-4 text-2xl font-bold text-blue-700">{'Poli ' + item.nama}</h2>
+                                    <h2 className="mb-4 text-2xl font-bold text-blue-700">{item.nama}</h2>
                                     <p className="leading-relaxed text-gray-600">{item.keterangan}</p>
                                 </div>
                             ) : null,
