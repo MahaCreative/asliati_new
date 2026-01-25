@@ -8,6 +8,7 @@ export default function LandingPage({ polis, dokter, profile, pasien, petugas })
     const { auth } = usePage().props;
     const [poliAktif, setPoliAktif] = useState(1);
     const [navOpen, setNavOpen] = useState(false);
+    const [antrianDropdown, setAntrianDropdown] = useState(false);
     const homeRef = useRef(null);
     const aboutRef = useRef(null);
     const poliRef = useRef(null);
@@ -54,22 +55,41 @@ export default function LandingPage({ polis, dokter, profile, pasien, petugas })
                             <button onClick={() => scrollToSection(dokterRef)} className="text-sm font-medium text-gray-700 hover:text-blue-600">
                                 Dokter
                             </button>
-
+ <div className="relative">
+                                        <button
+                                            onClick={() => setAntrianDropdown(!antrianDropdown)}
+                                            className="text-sm font-medium text-gray-700 hover:text-blue-600 flex items-center"
+                                        >
+                                            Antrian
+                                            <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </button>
+                                        {antrianDropdown && (
+                                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                                                <Link
+                                                    href={route('display.antrian-klinik')}
+                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                    onClick={() => setAntrianDropdown(false)}
+                                                >
+                                                    Antrian Klinik
+                                                </Link>
+                                                <Link
+                                                    href={route('display.antrian-ofline')}
+                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                    onClick={() => setAntrianDropdown(false)}
+                                                >
+                                                    Antrian Loket
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </div>
                             {auth.user ? (
                                 <>
                                     <Link href={route('dashboard')} className="text-sm font-medium text-gray-700 hover:text-blue-600">
                                         Dashboard
                                     </Link>
-                                    <Link
-                                        href={route('pasien.take-antrian.online')}
-                                        className="text-sm font-medium text-gray-700 hover:text-blue-600"
-                                    >
-                                        Booking Antrian
-                                    </Link>
-                                    <Link href={route('display.antrian-ofline')} className="text-sm font-medium text-gray-700 hover:text-blue-600">
-                                        Display Antrian Loket
-                                    </Link>
-
+                                   
                                     <Link
                                         as="button"
                                         method="post"
@@ -146,6 +166,70 @@ export default function LandingPage({ polis, dokter, profile, pasien, petugas })
                             >
                                 Dokter
                             </button>
+                            {auth.user && (
+                                <>
+                                    <Link
+                                        href={route('dashboard')}
+                                        className="block w-full py-2 text-left text-gray-700 hover:text-blue-600"
+                                        onClick={() => setNavOpen(false)}
+                                    >
+                                        Dashboard
+                                    </Link>
+                                    <div className="relative">
+                                        <button
+                                            onClick={() => setAntrianDropdown(!antrianDropdown)}
+                                            className="flex w-full items-center justify-between py-2 text-left text-gray-700 hover:text-blue-600"
+                                        >
+                                            Antrian
+                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </button>
+                                        {antrianDropdown && (
+                                            <div className="ml-4 mt-2 space-y-2">
+                                                <Link
+                                                    href={route('pasien.take-antrian.online')}
+                                                    className="block py-2 text-gray-700 hover:text-blue-600"
+                                                    onClick={() => {
+                                                        setNavOpen(false);
+                                                        setAntrianDropdown(false);
+                                                    }}
+                                                >
+                                                    Antrian Klinik
+                                                </Link>
+                                                <Link
+                                                    href={route('display.antrian-ofline')}
+                                                    className="block py-2 text-gray-700 hover:text-blue-600"
+                                                    onClick={() => {
+                                                        setNavOpen(false);
+                                                        setAntrianDropdown(false);
+                                                    }}
+                                                >
+                                                    Antrian Loket
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <Link
+                                        as="button"
+                                        method="post"
+                                        href={route('logout')}
+                                        className="block w-full py-2 text-left text-red-600 hover:text-red-700"
+                                        onClick={() => setNavOpen(false)}
+                                    >
+                                        Logout
+                                    </Link>
+                                </>
+                            )}
+                            {!auth.user && (
+                                <Link
+                                    href={route('login')}
+                                    className="block w-full py-2 text-left text-blue-600 hover:text-blue-700"
+                                    onClick={() => setNavOpen(false)}
+                                >
+                                    Login / Register
+                                </Link>
+                            )}
                         </div>
                     </div>
                 )}
@@ -330,7 +414,7 @@ export default function LandingPage({ polis, dokter, profile, pasien, petugas })
                                         : 'border bg-white text-gray-700 hover:border-blue-400'
                                 }`}
                             >
-                                <p className="text-lg font-semibold capitalize">{'Poli ' + item.nama}</p>
+                                <p className="text-lg font-semibold capitalize">{item.nama}</p>
                             </button>
                         ))}
                     </div>

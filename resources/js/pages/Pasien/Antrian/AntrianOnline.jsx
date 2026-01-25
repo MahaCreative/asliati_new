@@ -266,7 +266,7 @@ export default function AntrianOnline({ poli, dokter, antrian, keluarga }) {
                                         }`}
                                     >
                                         <div className="text-left">
-                                            <h3 className="text-lg font-semibold text-gray-900 capitalize">Dokter {item.user.name}</h3>
+                                            <h3 className="text-lg font-semibold text-gray-900">{item.user.name}</h3>
                                         </div>
                                     </button>
                                 ))}

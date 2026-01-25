@@ -34,7 +34,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/display-antrian-offline', [AntrianOfflineController::class, 'display'])->name('display.antrian-ofline');
-// Protected Routes
+Route::get('/display-antrian-klinik', [AntrianONlineController::class, 'display'])->name('display.antrian-klinik');
+    
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('laporan-antrian', [ReportAntrianPoliController::class, 'index'])->name('laporan-antrian');
@@ -45,8 +46,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('rekap-antrian-dokter', [ReportAntrianPoliController::class, 'rekap_dokter'])->name('laporan.rekap.dokter.index');
     Route::get('rekap-antrian-dokter/pdf', [ReportAntrianPoliController::class, 'rekap_dokter_export'])->name('laporan.rekap.dokter.pdf');
 
-    Route::get('/display-antrian-offline', [AntrianOfflineController::class, 'display'])->name('display.antrian-ofline');
-    Route::get('/display-antrian-klinik', [AntrianONlineController::class, 'display'])->name('display.antrian-klinik');
+    // Route::get('/display-antrian-offline', [AntrianOfflineController::class, 'display'])->name('display.antrian-ofline');
+    // Route::get('/display-antrian-klinik', [AntrianONlineController::class, 'display'])->name('display.antrian-klinik');
     // Dashboard Umum
 
     // PETUGAS
@@ -112,6 +113,9 @@ Route::get('panggil-kembali-antrian-online', [AntrianONlineController::class, 'p
 
 Route::get('data-ph', function () {
     return inertia('data');
+});
+Route::get('fake-ph', function () {
+    return inertia('StoreFake');
 });
 
 Route::post('store-testing', function (Request $request) {
