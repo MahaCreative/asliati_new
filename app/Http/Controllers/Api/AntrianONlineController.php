@@ -50,13 +50,13 @@ class AntrianONlineController extends Controller
             $item['antrian_dipanggil'] = Antrian::with(['pasien', 'dokter', 'dokter.user'])->where('tahap', 'klinik')
                 ->where('poli_id', $item->id)
                 ->where('status', 'dipanggil')
-                // ->whereDate('tanggal_periksa', '=', today())
+                ->whereDate('tanggal_periksa', '=', today())
                 ->latest()
                 ->first();
             $item['antrian_berikutnya'] = Antrian::with(['pasien', 'dokter', 'dokter.user'])->where('tahap', 'klinik')
                 ->where('poli_id', $item->id)
                 ->where('status', 'menunggu')
-                // ->whereDate('tanggal_periksa', '=', today())
+                ->whereDate('tanggal_periksa', '=', today())
                 ->first();
         }
 

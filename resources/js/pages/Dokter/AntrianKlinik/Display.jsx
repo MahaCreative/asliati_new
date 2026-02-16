@@ -90,12 +90,12 @@ export default function Display() {
 
                                 {item.antrian_dipanggil ? (
                                     <div className="rounded-lg bg-blue-600 p-6 text-center shadow-md">
-                                        <div className="text-5xl font-extrabold text-white drop-shadow">{item.antrian_dipanggil.kode_antrian}</div>
+                                        <div className="text-5xl font-extrabold text-white drop-shadow">{item.antrian_dipanggil?.kode_antrian}</div>
                                         <div className="mt-2 text-lg font-semibold text-white capitalize">
-                                            {item.antrian_dipanggil.pasien.nama_lengkap}
+                                            {item.antrian_dipanggil?.pasien?.nama_lengkap}
                                         </div>
                                         <div className="mt-1 text-sm font-medium text-blue-100 capitalize">
-                                            Dokter: {item.antrian_dipanggil.dokter.user.name}
+                                            Dokter: {item.antrian_dipanggil?.dokter?.user.name}
                                         </div>
                                     </div>
                                 ) : (
@@ -124,10 +124,10 @@ export default function Display() {
                                     <div className="rounded-lg bg-amber-500 p-5 text-center shadow-md">
                                         <div className="text-4xl font-bold text-white drop-shadow">{item.antrian_berikutnya.kode_antrian}</div>
                                         <div className="mt-2 text-base font-semibold text-white capitalize">
-                                            {item.antrian_berikutnya.pasien.nama_lengkap}
+                                            {item.antrian_berikutnya?.pasien?.nama_lengkap}
                                         </div>
                                         <div className="mt-1 text-sm font-medium text-amber-100 capitalize">
-                                            Dokter: {item.antrian_berikutnya.dokter.user.name}
+                                            Dokter: {item.antrian_berikutnya?.dokter?.user.name}
                                         </div>
                                     </div>
                                 ) : (

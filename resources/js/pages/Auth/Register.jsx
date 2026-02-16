@@ -34,7 +34,7 @@ export default function Register({ status }) {
 
     return (
         <>
-            <Head title="Login - Sistem Pendaftaran Klinik" />
+            <Head title="Register - Sistem Pendaftaran Klinik" />
 
             <div className="flex min-h-screen min-w-full items-center justify-center bg-white text-gray-600">
                 <div className="w-full max-w-3xl p-4">
